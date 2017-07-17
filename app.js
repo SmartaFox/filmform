@@ -1,0 +1,93 @@
+var express=require('express');
+var app=express();
+var path=require('path');
+var ejs=require('ejs');
+var router=require('./controller');
+app.set('views','./views');
+app.set('view engine','ejs');
+app.use(express.static('./bower_components'));
+app.listen(3000);
+app.get('/',/*function(req,res){
+	res.render('index',{
+		title:'首页',
+		moves:[{
+			title:'机械战警',
+		    _id:1,
+		    poster:'https://img1.doubanio.com/view/movie_poster_cover/lpst/public/p2170735207.webp'
+		},{
+			title:'机械战警',
+		    _id:2,
+		    poster:'https://img1.doubanio.com/view/movie_poster_cover/lpst/public/p2170735207.webp'
+		},{
+			title:'机械战警',
+		    _id:3,
+		    poster:'https://img1.doubanio.com/view/movie_poster_cover/lpst/public/p2170735207.webp'
+		},{
+			title:'机械战警',
+		    _id:4,
+		    poster:'https://img1.doubanio.com/view/movie_poster_cover/lpst/public/p2170735207.webp'
+		},{
+			title:'机械战警',
+		    _id:5,
+		    poster:'https://img1.doubanio.com/view/movie_poster_cover/lpst/public/p2170735207.webp'
+		},{
+			title:'机械战警',
+		    _id:6,
+		    poster:'https://img1.doubanio.com/view/movie_poster_cover/lpst/public/p2170735207.webp'
+		},{
+			title:'机械战警',
+		    _id:7,
+		    poster:'https://img1.doubanio.com/view/movie_poster_cover/lpst/public/p2170735207.webp'
+		},{
+			title:'机械战警',
+		    _id:8,
+		    poster:'https://img1.doubanio.com/view/movie_poster_cover/lpst/public/p2170735207.webp'
+		},
+		]
+	})
+}*/router.showIndex)
+app.get('/movie/:id',/*function(req,res){
+	res.render('detail',{
+		title:'详情页',
+		movie:{
+			doctor:'时空大圣',
+			country:'英国',
+			title:'机械战警',
+			year:'2014',
+			post:'',
+			language:'英语',
+			flash:'http://player.youku.com/player.php/sid/XNjA1Njc0NTUy/v.swf',
+			summary:'屎大颗等级考试收款还是空间很大数据活动结束'
+		}
+	})
+}*/router.listone)
+app.get('/admin/movie',function(req,res){
+	res.render('admin',{
+		title:'后台录入页',
+		movie:{
+			doctor:'',
+			country:'',
+			title:'',
+			year:'',
+			poster:'',
+			language:'',
+			flash:'',
+			summary:''
+		}
+	})
+})
+app.post('/admin/movie/new',router.getData)
+// app.get('/movie/delete',router.delet)
+app.get('/admin/list',/*function(req,res){
+	res.render('list',{
+		title:'列表页',
+		movies:[{
+			_id:1,
+			doctor:'时空大圣',
+			country:'英国',
+			title:'机械战警',
+			year:'2014',
+			language:'英语',
+		}]
+	})
+}*/router.listall)
